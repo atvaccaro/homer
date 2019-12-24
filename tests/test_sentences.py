@@ -114,7 +114,7 @@ class TestSentences(unittest.TestCase):
             },
             {
                 'line': 'There are many useful frameworks available in Python world.',
-                'words': 1
+                'words': 2
             },
             {
                 'line': 'This approach looks good to me.',

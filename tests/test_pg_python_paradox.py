@@ -1,15 +1,16 @@
 import unittest
 from homer import analyzer
+from homer.tests.python_paradox import text
 
 
 class TestPythonParadox(unittest.TestCase):
-    analyzed_text = analyzer.Article("python_paradox", "pg", open('python_paradox.txt').read())
+    analyzed_text = analyzer.Article("python_paradox", "pg", text)
 
     def test_total_words(self):
         self.assertEqual(182, TestPythonParadox.analyzed_text.total_words)
 
     def test_total_paragraphs(self):
-        self.assertEqual(3, TestPythonParadox.analyzed_text.total_paragrpahs)
+        self.assertEqual(3, TestPythonParadox.analyzed_text.total_paragraphs)
 
     def test_total_sentences(self):
         self.assertEqual(8, TestPythonParadox.analyzed_text.total_sentences)
@@ -23,17 +24,15 @@ class TestPythonParadox(unittest.TestCase):
     def test_total_ands(self):
         self.assertEqual(3, TestPythonParadox.analyzed_text.total_and_words)
 
-    def test_zombie_nouns(self):
-        self.assertEqual(1, len(TestPythonParadox.analyzed_text.zombie_nouns)) # 'programming'
-
     def test_intensifiers(self):
-        self.assertEqual(0, len(TestPythonParadox.analyzed_text.intensifiers))
+        self.assertEqual(0, len(TestPythonParadox.analyzed_text.get_intensifiers()))
 
     def test_compsulsive_hedgers(self):
-        self.assertEqual(0, len(TestPythonParadox.analyzed_text.compulsive_hedgers))
+        self.assertEqual(0, len(TestPythonParadox.analyzed_text.get_compulsive_hedgers()))
 
     def test_abstract_nouns(self):
-        self.assertEqual(0, len(TestPythonParadox.analyzed_text.abstract_nouns))
+        self.assertEqual(0, len(TestPythonParadox.analyzed_text.get_vague_words()))
+
 
 if __name__ == "__main__":
     unittest.main()

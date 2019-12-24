@@ -1,9 +1,10 @@
 import unittest
 from homer import analyzer
+from homer.tests.moby_dick import text
 
 
 class TestMobyDick(unittest.TestCase):
-    analyzed_text = analyzer.Article("moby_dick", "herman_melville", open('moby_dick.txt').read())
+    analyzed_text = analyzer.Article("moby_dick", "herman_melville", text)
 
     def test_total_words(self):
         self.assertEqual(1647, TestMobyDick.analyzed_text.total_words)
@@ -28,7 +29,7 @@ class TestMobyDick(unittest.TestCase):
         self.assertEqual(1, len(TestMobyDick.analyzed_text.get_intensifiers()))
 
     def test_compulsive_hedgers(self):
-        self.assertEqual(6, len(TestMobyDick.analyzed_text.get_compulsive_hedgers()))
+        self.assertEqual(19, len(TestMobyDick.analyzed_text.get_compulsive_hedgers()))
 
     def test_longest_sentence(self):
         start = "Whenever I find myself growing grim about the mouth;"
